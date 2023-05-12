@@ -118,12 +118,17 @@ const Utils = {
       if ( !remote ) {return;}
 
       const ref = remote.refs.fetch || remote.refs.push,
-            re = /\.[^.:/]+[:/]([^/]+)\/(.*?)(?:\.git|\/)?$/,
-            match = re.exec ( ref );
+            // re = /\.[^.:/]+[:/]([^/]+)\/(.*?)(?:\.git|\/)?$/,
+            re = /^[http|https|ssh]+:\/\/(?:.*?@)?(.*)\b\.git?\b$/; // 匹配 http https Gitab的（ssh）
+      let match = re.exec ( ref );
 
-      if ( !match ) {return;}
-
-      return `https://${config.github.domain}/${match[1]}/${match[2]}`;
+      if ( !match ) {
+        // 支持github的ssh
+        match = /git@github.com:(.*)\b.git?\b/.exec(ref)
+      }
+      if (!match) return;
+      // return `https://${config.github.domain}/${match[1]}/${match[2]}`;
+      return `https://${match[1]}`;
 
     }
 
