@@ -2,8 +2,13 @@
   "name": "open-git-remote",
   "displayName": "open-git-remote",
   "description": "快速打开远程仓库地址",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "linduomin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom-7/vscode-open-remote"
+  },
+  "icon": "resource/icon.png",
   "engines": {
     "vscode": "^1.78.0"
   },
@@ -15,6 +20,9 @@
     "onStartupFinished"
   ],
   "contributes": {
+    "images": [
+      "resource/icon.png"
+    ],
     "configuration": {
       "type": "object",
       "title": "Open in GitHub - Configuration",
@@ -111,7 +119,6 @@
     ]
   },
   "scripts": {
-    "publish": "pnpm run vscode:prepublish && vsce publish",
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",

@@ -2,7 +2,8 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
-import absolute from 'absolute';
+import * as absolute from 'absolute';
+// import absolute = require('absolute');
 import * as findUp from 'find-up';
 import * as path from 'path';
 import * as pify from 'pify';
@@ -42,7 +43,7 @@ const Utils = {
       if ( !workspaceFolders ) {return;}
 
       const firstRootPath = workspaceFolders[0].uri.fsPath;
-
+      // @ts-ignore
       if ( !basePath || !absolute ( basePath ) ) {return firstRootPath;}
 
       const rootPaths = workspaceFolders.map ( folder => folder.uri.fsPath ),

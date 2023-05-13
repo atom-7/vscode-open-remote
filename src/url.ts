@@ -83,12 +83,12 @@ const URL = {
 
     }
 
-    // if (_.isArray(page)) {
-    //   page = Utils.repo.isGithub(repourl) ? page[0] : page[1];
-    // }
-    if (_.isFunction(page)) {
-      page = page();
+    if (_.isArray(page)) {
+      page = Utils.repo.isGithub(repourl) ? page[0] : page[1];
     }
+    // if (_.isFunction(page)) {
+    //   page = page();
+    // }
 
     branch = encodeURIComponent ( branch );
     filePath = encodeURIComponent ( filePath ).replace ( /%2F/g, '/' );
