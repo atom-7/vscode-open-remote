@@ -5,7 +5,7 @@ import URL from './url';
 
 /* COMMANDS */
 
-function openProject () {
+function openProject () {  
 
   return URL.open ();
 
@@ -20,6 +20,17 @@ function openIssues () {
 function openPullRequests () {
 
   return URL.open ( false, false, 'pulls' );
+
+}
+function openMergeRequests () {
+
+  return URL.open ( false, false, 'merge_requests' );
+
+}
+
+function openPrOrMr () {
+  
+  return URL.open ( false, false, [ 'pulls', 'merge_requests' ] );
 
 }
 
@@ -85,4 +96,4 @@ function copyFilePermalink () {
 
 /* EXPORT */
 
-export {openProject, openIssues, openPullRequests, openActions, openProjects, openWiki, openSettings, openReleases, openFile, openFileHistory, openFileBlame, openFilePermalink, copyFilePermalink};
+export {openProject, openIssues, openPullRequests, openActions, openProjects, openWiki, openSettings, openReleases, openFile, openFileHistory, openFileBlame, openFilePermalink, copyFilePermalink, openMergeRequests, openPrOrMr };

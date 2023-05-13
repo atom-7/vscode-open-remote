@@ -17,15 +17,13 @@ import Config from './config';
 const Utils = {
 
   initCommands ( context: vscode.ExtensionContext ) {
-    const { commands } = vscode.extensions.getExtension ( 'rick.open-git-remote' ).packageJSON.contributes;
-    console.log("%c Line:21 🍫 commands", "color:#42b983", commands);
+    const { commands } = vscode.extensions.getExtension ( 'linduomin.open-git-remote' ).packageJSON.contributes;
 
     commands.forEach ( ({ command, title }) => {
 
       const commandName = _.last ( command.split ( '.' ) ) as string,
             handler = Commands[commandName],
             disposable = vscode.commands.registerCommand ( command, () => handler () );
-            console.log("%c Line:27 🍎 command", "color:#f5ce50", command);
 
       context.subscriptions.push ( disposable );
 
@@ -124,12 +122,18 @@ const Utils = {
 
       if ( !match ) {
         // 支持github的ssh
-        match = /git@github.com:(.*)\b.git?\b/.exec(ref)
+        match = /git@github.com:(.*)\b.git?\b/.exec(ref);
       }
-      if (!match) return;
+      if (!match) {return;}
+      // 去除端口号
+      const resultUrl = match[1].replace(/(:[0-9]+)(?:\/){1}/,'/');
       // return `https://${config.github.domain}/${match[1]}/${match[2]}`;
-      return `https://${match[1]}`;
+      return `https://${resultUrl}`;
 
+    },
+
+    isGithub (url:string){
+      return /github\.com/.test(url);
     }
 
   }

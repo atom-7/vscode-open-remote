@@ -22,6 +22,11 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('Hello World from open-git-remote!');
 	});
 
+	const mrBar = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 99);
+	mrBar.command = 'openInGitHub.openPrOrMr';
+	mrBar.text = '$(git-pull-request)合并请求';
+	mrBar.tooltip = '打开仓库MR';
+	mrBar.show();
 	const statusBar = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 100);
 	statusBar.command = 'openInGitHub.openProject';
 	statusBar.text = '$(github)';

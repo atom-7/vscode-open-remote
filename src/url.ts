@@ -13,7 +13,7 @@ const URL = {
   async get ( file = false, permalink = false, page? ) {
 
     const repopath = await Utils.repo.getPath ();
-
+    
     if ( !repopath ) {return vscode.window.showErrorMessage ( 'You have to open a git project before being able to open it in GitHub' );}
 
     const git = Utils.repo.getGit ( repopath ),
@@ -81,6 +81,13 @@ const URL = {
 
       }
 
+    }
+
+    // if (_.isArray(page)) {
+    //   page = Utils.repo.isGithub(repourl) ? page[0] : page[1];
+    // }
+    if (_.isFunction(page)) {
+      page = page();
     }
 
     branch = encodeURIComponent ( branch );
